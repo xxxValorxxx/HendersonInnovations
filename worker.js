@@ -155,10 +155,6 @@ export default {
     }
 
     // marketing site is public (serve index.html for the root)
-    if (path === "/" || path === "") {
-      const root = new URL("/index.html", url);
-      return env.ASSETS.fetch(new Request(root.toString(), request));
-    }
     return env.ASSETS.fetch(request);
   }
 };
