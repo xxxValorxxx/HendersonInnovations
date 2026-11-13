@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "henderson-innovations",
+  "main": "worker.js",
+  "compatibility_date": "2026-01-15",
+  "assets": {
+    "directory": "./",
+    "binding": "ASSETS",
+    "run_worker_first": true,
+    "html_handling": "none"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "HI_KV",
+      "id": "d422c3da0eae42eab41ac3f8350fb06f"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}

@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fdfaf5">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex, nofollow">
+<title>Client Preview · Henderson Innovations</title>
+<meta name="description" content="Private client preview sign-in for Henderson Innovations.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231f6f78'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' font-weight='700' text-anchor='middle' fill='%23fdfaf5'%3EH%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./portal.css">
+</head>
+<body class="login-page">
+
+<div class="login-shell">
+
+  <aside class="login-panel">
+    <div class="panel-top">
+      <div class="portal-brand portal-brand--panel">
+        <span class="brand-mark" aria-hidden="true">H</span>
+        <span>Henderson <em>Innovations</em></span>
+      </div>
+      <span class="panel-mobile-tag">Client preview</span>
+    </div>
+
+    <div class="panel-body">
+      <div class="panel-copy">
+        <p class="eyebrow eyebrow--light">Client preview</p>
+        <h1>A first look at<br><em>your new site.</em></h1>
+        <p class="panel-lede">Walk through every page we've built for your business — the design, the words, the details — before it goes live for the world.</p>
+        <ul class="panel-points">
+          <li>A private link made for your business</li>
+          <li>Every page, exactly as customers will see it</li>
+          <li>Looks right on desktop, tablet, and phone</li>
+        </ul>
+      </div>
+
+      <div class="panel-preview" aria-hidden="true">
+        <div class="mini-browser">
+          <div class="mini-bar">
+            <span class="mini-dot"></span>
+            <span class="mini-dot"></span>
+            <span class="mini-dot"></span>
+            <span class="mini-url">yourbusiness.com</span>
+          </div>
+          <div class="mini-site">
+            <span class="mini-kicker">Henderson, Kentucky</span>
+            <strong>Made with care.<br><em>Built to last.</em></strong>
+            <span class="mini-line"></span>
+            <span class="mini-line mini-line--short"></span>
+            <span class="mini-cta">Explore</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="panel-foot">Private previews for clients of Henderson Innovations</p>
+  </aside>
+
+  <main class="login-main">
+    <div class="login-card" id="loginCard">
+      <p class="eyebrow">Client portal</p>
+      <h2>Welcome back.</h2>
+      <p class="login-sub">Sign in with the username and password we sent you to preview your new site.</p>
+
+      <form id="loginForm" novalidate aria-describedby="formError">
+        <div class="field" id="usernameField">
+          <label for="username">Username</label>
+          <input id="username" name="username" type="text" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false" required>
+        </div>
+
+        <div class="field" id="passwordField">
+          <label for="password">Password</label>
+          <div class="password-wrap">
+            <input id="password" name="password" type="password" autocomplete="current-password" autocapitalize="none" autocorrect="off" spellcheck="false" required>
+            <button class="password-toggle" id="togglePassword" type="button" aria-pressed="false" aria-label="Show password">Show</button>
+          </div>
+        </div>
+
+        <div class="form-error" id="formError" role="alert" hidden>
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <circle cx="10" cy="10" r="8.25" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M10 5.75v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="10" cy="14" r=".9" fill="currentColor"/>
+          </svg>
+          <span id="formErrorText"></span>
+        </div>
+
+        <button class="submit-btn" id="submitBtn" type="submit">
+          <span class="spinner" aria-hidden="true"></span>
+          <span id="submitLabel">View my preview</span>
+        </button>
+      </form>
+
+      <p class="login-help">Need access? <a href="mailto:Admin@hendersoninnovations.com">Admin@hendersoninnovations.com</a></p>
+      <p class="login-back-row"><a class="login-back" href="../index.html">← Back to Henderson Innovations</a></p>
+    </div>
+
+    <p class="login-foot">© <span id="year">2026</span> Henderson Innovations · Client previews are private</p>
+  </main>
+
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var MIN_LOADING_MS = 450;
+  var form = document.getElementById('loginForm');
+  var card = document.getElementById('loginCard');
+  var usernameInput = document.getElementById('username');
+  var passwordInput = document.getElementById('password');
+  var usernameField = document.getElementById('usernameField');
+  var passwordField = document.getElementById('passwordField');
+  var toggleButton = document.getElementById('togglePassword');
+  var submitButton = document.getElementById('submitBtn');
+  var submitLabel = document.getElementById('submitLabel');
+  var errorBox = document.getElementById('formError');
+  var errorText = document.getElementById('formErrorText');
+  var busy = false;
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  function sleep(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+  function waitForMinimum(started) {
+    var remaining = MIN_LOADING_MS - (performance.now() - started);
+    return remaining > 0 ? sleep(remaining) : Promise.resolve();
+  }
+  function setFieldError(field, input, hasError) {
+    field.classList.toggle('has-error', hasError);
+    if (hasError) input.setAttribute('aria-invalid', 'true');
+    else input.removeAttribute('aria-invalid');
+  }
+  function showError(message, fields) {
+    errorText.textContent = message;
+    errorBox.hidden = false;
+    setFieldError(usernameField, usernameInput, !!(fields && fields.username));
+    setFieldError(passwordField, passwordInput, !!(fields && fields.password));
+    card.classList.remove('shake');
+    void card.offsetWidth;
+    card.classList.add('shake');
+  }
+  function clearError() {
+    errorBox.hidden = true;
+    errorText.textContent = '';
+    setFieldError(usernameField, usernameInput, false);
+    setFieldError(passwordField, passwordInput, false);
+    card.classList.remove('shake');
+  }
+  function setLoading(isLoading) {
+    form.classList.toggle('is-loading', isLoading);
+    submitButton.disabled = isLoading;
+    usernameInput.disabled = isLoading;
+    passwordInput.disabled = isLoading;
+    toggleButton.disabled = isLoading;
+    form.setAttribute('aria-busy', isLoading ? 'true' : 'false');
+    submitLabel.textContent = isLoading ? 'Opening your preview…' : 'View my preview';
+  }
+
+  toggleButton.addEventListener('click', function () {
+    var show = passwordInput.type === 'password';
+    passwordInput.type = show ? 'text' : 'password';
+    toggleButton.textContent = show ? 'Hide' : 'Show';
+    toggleButton.setAttribute('aria-pressed', show ? 'true' : 'false');
+    toggleButton.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+    passwordInput.focus();
+    var length = passwordInput.value.length;
+    try { passwordInput.setSelectionRange(length, length); } catch (err) {}
+  });
+
+  [usernameInput, passwordInput].forEach(function (input) {
+    input.addEventListener('input', function () { if (!errorBox.hidden) clearError(); });
+  });
+
+  window.addEventListener('pageshow', function (event) {
+    if (event.persisted && busy) { busy = false; setLoading(false); }
+  });
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    if (busy) return;
+    var username = usernameInput.value.trim();
+    var password = passwordInput.value;
+    clearError();
+    if (!username || !password) {
+      showError('Enter your username and password to continue.', {
+        username: !username, password: !password
+      });
+      (username ? passwordInput : usernameInput).focus();
+      return;
+    }
+    busy = true;
+    setLoading(true);
+    var started = performance.now();
+    fetch('/api/preview/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ u: username, p: password })
+    })
+      .then(function (res) {
+        return res.json().catch(function () { return {}; }).then(function (data) {
+          return { status: res.status, data: data };
+        });
+      })
+      .then(function (result) {
+        return waitForMinimum(started).then(function () {
+          if (result.status === 200 && result.data && result.data.slug) {
+            window.location.assign('./viewer.html?site=' + encodeURIComponent(result.data.slug));
+            return;
+          }
+          busy = false;
+          setLoading(false);
+          if (result.status === 429) {
+            showError('Too many attempts. Please wait a few minutes and try again.', null);
+          } else if (result.status === 401) {
+            showError("We couldn't match that username and password. Check the details we sent you.", { username: true, password: true });
+            passwordInput.focus();
+            passwordInput.select();
+          } else {
+            showError('Preview access is unavailable right now. Please email Admin@hendersoninnovations.com.', null);
+          }
+        });
+      })
+      .catch(function () {
+        return waitForMinimum(started).then(function () {
+          busy = false;
+          setLoading(false);
+          showError('Could not reach the preview server. Check your connection and try again.', null);
+        });
+      });
+  });
+})();
+</script>
+<script>
+(function () {
+  'use strict';
+
+  var SESSION_KEY = 'hi_preview_session';
+  var MIN_LOADING_MS = 550;
+
+  var form = document.getElementById('loginForm');
+  var card = document.getElementById('loginCard');
+  var usernameInput = document.getElementById('username');
+  var passwordInput = document.getElementById('password');
+  var usernameField = document.getElementById('usernameField');
+  var passwordField = document.getElementById('passwordField');
+  var toggleButton = document.getElementById('togglePassword');
+  var submitButton = document.getElementById('submitBtn');
+  var submitLabel = document.getElementById('submitLabel');
+  var errorBox = document.getElementById('formError');
+  var errorText = document.getElementById('formErrorText');
+  var manifest = window.HI_PREVIEW_CLIENTS;
+  var busy = false;
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  var toHex = function (buffer) {
+    return Array.prototype.map.call(new Uint8Array(buffer), function (byte) {
+      return byte.toString(16).padStart(2, '0');
+    }).join('');
+  };
+
+  function sha256(value) {
+    return window.crypto.subtle
+      .digest('SHA-256', new TextEncoder().encode(value))
+      .then(toHex);
+  }
+
+  function sleep(ms) {
+    return new Promise(function (resolve) { setTimeout(resolve, ms); });
+  }
+
+  function waitForMinimum(started) {
+    var remaining = MIN_LOADING_MS - (performance.now() - started);
+    return remaining > 0 ? sleep(remaining) : Promise.resolve();
+  }
+
+  function setFieldError(field, input, hasError) {
+    field.classList.toggle('has-error', hasError);
+    if (hasError) {
+      input.setAttribute('aria-invalid', 'true');
+    } else {
+      input.removeAttribute('aria-invalid');
+    }
+  }
+
+  function showError(message, fields) {
+    errorText.textContent = message;
+    errorBox.hidden = false;
+    setFieldError(usernameField, usernameInput, !!(fields && fields.username));
+    setFieldError(passwordField, passwordInput, !!(fields && fields.password));
+    card.classList.remove('shake');
+    void card.offsetWidth;
+    card.classList.add('shake');
+  }
+
+  function clearError() {
+    errorBox.hidden = true;
+    errorText.textContent = '';
+    setFieldError(usernameField, usernameInput, false);
+    setFieldError(passwordField, passwordInput, false);
+    card.classList.remove('shake');
+  }
+
+  function setLoading(isLoading) {
+    form.classList.toggle('is-loading', isLoading);
+    submitButton.disabled = isLoading;
+    usernameInput.disabled = isLoading;
+    passwordInput.disabled = isLoading;
+    toggleButton.disabled = isLoading;
+    form.setAttribute('aria-busy', isLoading ? 'true' : 'false');
+    submitLabel.textContent = isLoading ? 'Opening your preview…' : 'View my preview';
+  }
+
+  toggleButton.addEventListener('click', function () {
+    var show = passwordInput.type === 'password';
+    passwordInput.type = show ? 'text' : 'password';
+    toggleButton.textContent = show ? 'Hide' : 'Show';
+    toggleButton.setAttribute('aria-pressed', show ? 'true' : 'false');
+    toggleButton.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+    passwordInput.focus();
+    var length = passwordInput.value.length;
+    try { passwordInput.setSelectionRange(length, length); } catch (err) {}
+  });
+
+  [usernameInput, passwordInput].forEach(function (input) {
+    input.addEventListener('input', function () {
+      if (!errorBox.hidden) clearError();
+    });
+  });
+
+  if (!Array.isArray(manifest) || manifest.length === 0) {
+    showError('Preview access is unavailable right now. Please email Admin@hendersoninnovations.com.', null);
+    setLoading(false);
+    submitButton.disabled = true;
+    return;
+  }
+
+  window.addEventListener('pageshow', function (event) {
+    if (event.persisted && busy) {
+      busy = false;
+      setLoading(false);
+    }
+  });
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    if (busy) return;
+
+    var username = usernameInput.value.trim().toLowerCase();
+    var password = passwordInput.value;
+
+    clearError();
+
+    if (!username || !password) {
+      showError('Enter your username and password to continue.', {
+        username: !username,
+        password: !password
+      });
+      (username ? passwordInput : usernameInput).focus();
+      return;
+    }
+
+    busy = true;
+    setLoading(true);
+    var started = performance.now();
+
+    Promise.resolve()
+      .then(function () {
+        if (!window.crypto || !window.crypto.subtle) {
+          throw new Error('insecure');
+        }
+        return sha256(password);
+      })
+      .then(function (passwordHash) {
+        var client = manifest.find(function (entry) {
+          return String(entry.u).toLowerCase() === username;
+        });
+        if (!client || passwordHash !== String(client.h).toLowerCase()) {
+          throw new Error('invalid');
+        }
+        return sha256(client.u + password + client.slug).then(function (token) {
+          var session = {
+            u: client.u,
+            slug: client.slug,
+            name: client.name,
+            token: token,
+            ts: Date.now()
+          };
+          try {
+            sessionStorage.setItem(SESSION_KEY, JSON.stringify(session));
+          } catch (err) {
+            throw new Error('storage');
+          }
+          return client;
+        });
+      })
+      .then(function (client) {
+        return waitForMinimum(started).then(function () {
+          window.location.assign('./viewer.html?site=' + encodeURIComponent(client.slug));
+        });
+      })
+      .catch(function (error) {
+        return waitForMinimum(started).then(function () {
+          busy = false;
+          setLoading(false);
+          var message = 'Something went wrong. Please try again.';
+          if (error && error.message === 'insecure') {
+            message = 'Preview sign-in needs a secure connection. Open this page over https:// or localhost.';
+          } else if (error && error.message === 'storage') {
+            message = 'Your browser blocked the preview session. Try a normal window or a different browser.';
+          } else if (error && error.message === 'invalid') {
+            message = "We couldn't match that username and password. Check the details we sent you.";
+          }
+          showError(message, error && error.message === 'invalid'
+            ? { username: true, password: true }
+            : null);
+          if (error && error.message === 'invalid') {
+            passwordInput.focus();
+            passwordInput.select();
+          }
+        });
+      });
+  });
+})();
+</script>
+</body>
+</html>

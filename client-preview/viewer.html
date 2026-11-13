@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#141d2b">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex, nofollow">
+<title>Client Preview · Henderson Innovations</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231f6f78'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' font-weight='700' text-anchor='middle' fill='%23fdfaf5'%3EH%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./portal.css">
+</head>
+<body class="viewer-page">
+
+<div class="viewer-shell">
+  <header class="viewer-bar">
+    <div class="portal-brand portal-brand--bar">
+      <span class="brand-mark" aria-hidden="true">H</span>
+      <span class="portal-brand-text">Henderson <em>Innovations</em></span>
+    </div>
+    <span class="viewer-rule" aria-hidden="true"></span>
+    <div class="viewer-meta">
+      <span class="viewer-kicker">Client preview</span>
+      <span class="viewer-name" id="viewerName">Loading…</span>
+    </div>
+    <button class="viewer-exit" id="exitPreview" type="button">
+      <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      Exit preview
+    </button>
+  </header>
+
+  <iframe class="viewer-frame" id="previewFrame" title="Client site preview" loading="eager" allowfullscreen></iframe>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var frame = document.getElementById('previewFrame');
+  var nameEl = document.getElementById('viewerName');
+
+  fetch('/api/preview/session', { headers: { 'Accept': 'application/json' } })
+    .then(function (res) {
+      if (!res.ok) throw new Error('unauthorised');
+      return res.json();
+    })
+    .then(function (session) {
+      if (!session || !session.slug) throw new Error('unauthorised');
+      nameEl.textContent = session.name || session.slug;
+      document.title = (session.name || 'Client') + ' — Client Preview · Henderson Innovations';
+      frame.title = (session.name || 'Client') + ' client preview';
+      frame.src = 'sites/' + encodeURIComponent(session.slug) + '/index.html';
+    })
+    .catch(function () {
+      window.location.replace('./index.html');
+    });
+
+  document.getElementById('exitPreview').addEventListener('click', function () {
+    fetch('/api/preview/logout', { method: 'POST' })
+      .catch(function () {})
+      .then(function () { window.location.replace('./index.html'); });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lady Luck Tattoo &amp; Piercing Co. II — Henderson, Kentucky</title>
+<meta name="description" content="Henderson, Kentucky's fully female-owned, female-staffed tattoo and piercing shop. Custom ink, clean piercings, zero gatekeeping. 419 N Green St. Est. 2007.">
+<meta name="theme-color" content="#050507">
+<meta property="og:title" content="Lady Luck Tattoo &amp; Piercing Co. II">
+<meta property="og:description" content="Good tattoos. Clean piercings. Zero gatekeeping. Henderson, KY — est. 2007.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/img/logo-mark.jpg">
+<link rel="preload" href="assets/fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/space-grotesk-300-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="scan" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#top" aria-label="Lady Luck — home">
+    <span class="nav__mark" aria-hidden="true"></span>
+    <span class="nav__word">Lady Luck</span>
+    <span class="nav__tag">Est. 07</span>
+  </a>
+  <nav class="nav__links" aria-label="Primary">
+    <a href="#shop">Shop</a>
+    <a href="#crew">Crew</a>
+    <a href="#work">Work</a>
+    <a href="#services">Services</a>
+    <a href="#visit">Visit</a>
+  </nav>
+  <a class="btn btn--pink nav__cta" href="tel:+12702120037">Book</a>
+  <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <a href="#shop">Shop</a>
+  <a href="#crew">Crew</a>
+  <a href="#work">Work</a>
+  <a href="#services">Services</a>
+  <a href="#visit">Visit</a>
+  <a class="mobile-menu__phone" href="tel:+12702120037">(270) 212-0037</a>
+</div>
+
+<main id="top">
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero" id="hero">
+  <div class="hero__stage">
+    <canvas id="scene" aria-hidden="true"></canvas>
+    <div class="hero__scrim" aria-hidden="true"></div>
+  </div>
+
+  <div class="hero__inner">
+    <div class="hero__content">
+      <p class="eyebrow reveal">[ Henderson, KY <span>—</span> Est. 2007 ]</p>
+
+      <h1 class="hero__title reveal" data-delay="1">
+        <span class="hero__lady">Lady</span>
+        <span class="hero__luck">Luck</span>
+      </h1>
+
+      <p class="hero__kicker reveal" data-delay="2">Tattoo <em>&amp;</em> Piercing Co. II</p>
+
+      <p class="hero__lead reveal" data-delay="3">
+        Female owned. Female staffed. Custom ink, clean piercings and
+        absolutely zero gatekeeping — on Green Street since we opened the doors.
+      </p>
+
+      <div class="hero__stickers reveal" data-delay="4">
+        <span class="sticker sticker--acid">Walk-ins welcome</span>
+        <span class="sticker sticker--pink">Tue — Sat</span>
+        <span class="sticker sticker--ghost">Safe space</span>
+      </div>
+
+      <div class="hero__actions reveal" data-delay="5">
+        <a class="btn btn--pink" href="tel:+12702120037">Book a chair</a>
+        <a class="btn btn--line" href="#work">See the work</a>
+      </div>
+
+      <aside class="fortune reveal" data-delay="6">
+        <p class="fortune__label">Ask Lady Luck</p>
+        <p class="fortune__text" id="fortuneText">Roll the bones. She'll tell you what kind of day it is.</p>
+        <button class="fortune__btn" id="rollBtn" type="button">
+          <span class="die" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+          <span>Roll the dice</span>
+        </button>
+      </aside>
+    </div>
+  </div>
+
+  <div class="hero__corner" aria-hidden="true">
+    <span>LN</span>
+    <span class="hero__corner-sub">419 N Green St</span>
+  </div>
+</section>
+
+<!-- ══════════ TICKER ══════════ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track">
+    <span>Walk-ins welcome</span><b>✦</b>
+    <span>Female owned &amp; staffed</span><b>✦</b>
+    <span>Custom tattoo</span><b>✦</b>
+    <span>Body piercing</span><b>✦</b>
+    <span>Henderson, KY</span><b>✦</b>
+    <span>Est. 2007</span><b>✦</b>
+    <span>Walk-ins welcome</span><b>✦</b>
+    <span>Female owned &amp; staffed</span><b>✦</b>
+    <span>Custom tattoo</span><b>✦</b>
+    <span>Body piercing</span><b>✦</b>
+    <span>Henderson, KY</span><b>✦</b>
+    <span>Est. 2007</span><b>✦</b>
+  </div>
+</div>
+
+<!-- ══════════ 01 SHOP ══════════ -->
+<section class="section shop" id="shop">
+  <div class="wrap">
+    <div class="section-label reveal"><span>01</span> The shop</div>
+
+    <div class="shop__grid">
+      <div class="shop__media">
+        <figure class="photo photo--a reveal">
+          <img src="assets/img/interior-0.jpg" alt="The Lady Luck window lettering on N Green Street" loading="lazy">
+          <figcaption>419 N. Green</figcaption>
+          <span class="tape tape--tl" aria-hidden="true"></span>
+          <span class="tape tape--br" aria-hidden="true"></span>
+        </figure>
+        <figure class="photo photo--b reveal" data-delay="2">
+          <img src="assets/img/interior-1.jpg" alt="Warm timber lobby of the shop" loading="lazy">
+          <figcaption>the lobby</figcaption>
+        </figure>
+        <span class="badge badge--pink reveal" data-delay="3">No gatekeeping<br>ever</span>
+      </div>
+
+      <div class="shop__copy">
+        <h2 class="h2 reveal" data-delay="1">Old-school room.<br><span class="outline">New blood.</span></h2>
+
+        <p class="lead reveal" data-delay="2">
+          Lady Luck opened in Owensboro in 2007 with one rule: good tattoos, done
+          properly, by people who actually want you in the chair.
+        </p>
+        <p class="reveal" data-delay="3">
+          Fifteen years later we brought the same room across the river — knotty
+          pine, brass, low amber light, and a turquoise wall you can spot from
+          Sand Lane. It feels a little like the inside of a ship. It acts like
+          your friend's kitchen.
+        </p>
+        <p class="reveal" data-delay="4">
+          Every artist here is a woman. Every client gets the same treatment.
+          First-timers, collectors, mother-son duos with no plan at all — pull up.
+          We'll tell you the truth about what will age well, then draw the rest.
+        </p>
+
+        <dl class="facts reveal" data-delay="5">
+          <div><dt>Since</dt><dd>2007</dd></div>
+          <div><dt>Staff</dt><dd>100% female</dd></div>
+          <div><dt>Chairs</dt><dd>Walk-in ready</dd></div>
+          <div><dt>Vibe</dt><dd>No pretension</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 02 CREW ══════════ -->
+<section class="section crew" id="crew">
+  <div class="wrap">
+    <div class="section-label reveal"><span>02</span> The crew</div>
+
+    <header class="head">
+      <h2 class="h2 reveal" data-delay="1">The hands<br>behind <span class="outline">the luck.</span></h2>
+      <p class="head__note reveal" data-delay="2">
+        Henderson's only fully female-staffed shop. The roster turns with the
+        seasons — call ahead to see who's holding the machine today.
+      </p>
+    </header>
+
+    <div class="crew__grid">
+      <article class="person reveal">
+        <span class="person__num">01</span>
+        <div class="person__mono">M</div>
+        <h3>Melissa Smith</h3>
+        <p class="person__role">Founder / Owner</p>
+        <p class="person__bio">Opened Lady Luck in 2007. Still takes the chair when the shop is slammed and the coffee's gone cold.</p>
+      </article>
+
+      <article class="person reveal" data-delay="1">
+        <span class="person__num">02</span>
+        <div class="person__mono">L</div>
+        <h3>Lori</h3>
+        <p class="person__role">Piercing</p>
+        <p class="person__bio">The one who'll talk you down before the needle goes in. Precise, unhurried, genuinely funny about it.</p>
+      </article>
+
+      <article class="person reveal" data-delay="2">
+        <span class="person__num">03</span>
+        <div class="person__mono">C</div>
+        <h3>Claire</h3>
+        <p class="person__role">Fine line / Florals</p>
+        <p class="person__bio">The shop's flower child. Here since the doors opened; draws like the page owes her something.</p>
+      </article>
+
+      <article class="person reveal" data-delay="3">
+        <span class="person__num">04</span>
+        <div class="person__mono">B</div>
+        <h3>Brittany</h3>
+        <p class="person__role">Tattoo Artist</p>
+        <p class="person__bio">Steady linework, zero attitude. Ask her about the shop's Tats for Tails days.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 03 WORK ══════════ -->
+<section class="section work" id="work">
+  <div class="wrap">
+    <div class="section-label reveal"><span>03</span> The work</div>
+
+    <header class="head head--row">
+      <h2 class="h2 reveal" data-delay="1">Fresh off<br><span class="outline">the table.</span></h2>
+      <p class="head__note reveal" data-delay="2">
+        Healed, fresh and everything between. More daily on
+        <a href="https://www.instagram.com/ladyluckhenderson/" target="_blank" rel="noopener">@ladyluckhenderson</a>.
+      </p>
+    </header>
+
+    <div class="gallery" id="gallery">
+      <button class="tile tile--wide reveal" data-full="assets/img/interior-1.jpg" data-cap="The lobby — 419 N. Green St.">
+        <img src="assets/img/interior-1.jpg" alt="Warm timber lobby of Lady Luck Tattoo in Henderson" loading="lazy">
+        <span class="tile__cap">The lobby</span>
+      </button>
+      <button class="tile reveal" data-delay="1" data-full="assets/img/ink-fine-line.jpg" data-cap="Fine line, fresh.">
+        <img src="assets/img/ink-fine-line.jpg" alt="Fine line tattoo on a client's ribcage" loading="lazy">
+        <span class="tile__cap">Fine line</span>
+      </button>
+      <button class="tile reveal" data-delay="2" data-full="assets/img/flash-sheet.jpg" data-cap="Flash from the wall.">
+        <img src="assets/img/flash-sheet.jpg" alt="Hand-drawn flash sheet with original designs" loading="lazy">
+        <span class="tile__cap">Flash</span>
+      </button>
+      <button class="tile reveal" data-full="assets/img/interior-4.jpg" data-cap="Where the work happens.">
+        <img src="assets/img/interior-4.jpg" alt="Tattoo station with warm lighting and wood ceiling" loading="lazy">
+        <span class="tile__cap">The chair</span>
+      </button>
+      <button class="tile tile--tall reveal" data-delay="1" data-full="assets/img/interior-3.jpg" data-cap="The piercery.">
+        <img src="assets/img/interior-3.jpg" alt="Piercing room with mirror and cabinetry" loading="lazy">
+        <span class="tile__cap">The piercery</span>
+      </button>
+      <button class="tile reveal" data-delay="2" data-full="assets/img/interior-2.jpg" data-cap="Down the hall.">
+        <img src="assets/img/interior-2.jpg" alt="Hallway of the shop with warm wood walls" loading="lazy">
+        <span class="tile__cap">Down the hall</span>
+      </button>
+      <button class="tile reveal" data-full="assets/img/flash-pride.jpg" data-cap="Pride flash — everyone gets a chair.">
+        <img src="assets/img/flash-pride.jpg" alt="Pride themed flash tattoo designs" loading="lazy">
+        <span class="tile__cap">Pride flash</span>
+      </button>
+      <button class="tile tile--wide reveal" data-delay="1" data-full="assets/img/interior-0.jpg" data-cap="Lady Luck, from the street.">
+        <img src="assets/img/interior-0.jpg" alt="Lady Luck lettering on the shop window" loading="lazy">
+        <span class="tile__cap">From the street</span>
+      </button>
+    </div>
+
+    <p class="work__foot reveal">
+      Photos from the shop's own socials. Proper portfolios live with each artist — ask at the desk.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ 04 SERVICES ══════════ -->
+<section class="section services" id="services">
+  <div class="wrap">
+    <div class="section-label reveal"><span>04</span> Services</div>
+
+    <header class="head">
+      <h2 class="h2 reveal" data-delay="1">What happens<br><span class="outline">in the chair.</span></h2>
+    </header>
+
+    <div class="services__grid">
+      <article class="service reveal">
+        <span class="service__no">01</span>
+        <h3>Custom<br>Tattoo</h3>
+        <p>Bring the reference, the half-formed idea, or just a feeling. We'll draw it to fit the body it's going on.</p>
+        <ul>
+          <li>Fine line &amp; florals</li>
+          <li>Blackwork &amp; traditional</li>
+          <li>Color &amp; illustrative</li>
+          <li>Cover-ups &amp; reworks</li>
+        </ul>
+      </article>
+
+      <article class="service reveal" data-delay="1">
+        <span class="service__no">02</span>
+        <h3>Body<br>Piercing</h3>
+        <p>Lobes to the tricky stuff. Implant-grade jewelry, an anatomy check, and aftercare advice from this century.</p>
+        <ul>
+          <li>Ears &amp; cartilage</li>
+          <li>Nostril &amp; septum</li>
+          <li>Navel, brow, lip</li>
+          <li>Jewelry changes</li>
+        </ul>
+      </article>
+
+      <article class="service reveal" data-delay="2">
+        <span class="service__no">03</span>
+        <h3>Jewelry &amp;<br>Aftercare</h3>
+        <p>A case of pieces worth keeping, plus the boring-but-vital stuff — saline, balm, and a human who answers the phone.</p>
+        <ul>
+          <li>Titanium &amp; gold-free options</li>
+          <li>Curated ends</li>
+          <li>Saline &amp; balm</li>
+          <li>Downsizing visits</li>
+        </ul>
+      </article>
+
+      <article class="service reveal" data-delay="3">
+        <span class="service__no">04</span>
+        <h3>Flash &amp;<br>Events</h3>
+        <p>Friday-the-13th sheets, holiday flash, charity days like Tats for Tails. Follow the socials — good stuff goes fast.</p>
+        <ul>
+          <li>Flash days</li>
+          <li>Gift certificates</li>
+          <li>Charity events</li>
+          <li>Group bookings</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="fineprint reveal">
+      <p><strong>Good to know —</strong> a deposit holds your appointment and comes off the final price. Bring photo ID; it's the law, not a vibe check. Under 18 needs a parent or guardian present, and nobody under 16 gets in the chair without one.</p>
+      <a class="btn btn--line" href="tel:+12702120037">Ask us anything</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ QUOTE ══════════ -->
+<section class="quote">
+  <div class="wrap quote__inner">
+    <span class="quote__mark" aria-hidden="true">“</span>
+    <blockquote class="reveal">
+      We're just a bunch of big-hearted ladies trying to help you feel more
+      confident in the skin you're in.
+    </blockquote>
+    <cite class="reveal" data-delay="1">— Lady Luck, in its own words</cite>
+  </div>
+</section>
+
+<!-- ══════════ 05 VISIT ══════════ -->
+<section class="section visit" id="visit">
+  <div class="wrap">
+    <div class="section-label reveal"><span>05</span> Visit</div>
+
+    <div class="visit__grid">
+      <div class="visit__info">
+        <h2 class="h2 reveal" data-delay="1">419 N. Green<br><span class="outline">Henderson, KY</span></h2>
+        <p class="visit__note reveal" data-delay="2">Beside the Downtown Motel. Turquoise wall, neon in the window. You'll know.</p>
+
+        <dl class="hours" id="hours">
+          <div data-day="2"><dt>Tue <span>—</span> Thu</dt><dd>10<span>am</span>—6<span>pm</span></dd></div>
+          <div data-day="5"><dt>Fri <span>—</span> Sat</dt><dd>10<span>am</span>—8<span>pm</span></dd></div>
+          <div data-day="0"><dt>Sun <span>—</span> Mon</dt><dd class="closed">Closed</dd></div>
+        </dl>
+
+        <div class="visit__actions reveal" data-delay="3">
+          <a class="btn btn--pink" href="tel:+12702120037">(270) 212-0037</a>
+          <a class="btn btn--line" href="https://www.google.com/maps/search/?api=1&amp;query=419+N+Green+St+Henderson+KY+42420" target="_blank" rel="noopener">Directions</a>
+        </div>
+
+        <ul class="socials reveal" data-delay="4">
+          <li><a href="https://www.facebook.com/ladylucktattoohendersonky/" target="_blank" rel="noopener">Facebook ↗</a></li>
+          <li><a href="https://www.instagram.com/ladyluckhenderson/" target="_blank" rel="noopener">Instagram ↗</a></li>
+          <li><a href="mailto:ladyluckhenderson@gmail.com">Email ↗</a></li>
+        </ul>
+      </div>
+
+      <div class="map reveal" data-delay="2" aria-hidden="true">
+        <svg viewBox="0 0 600 700" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <pattern id="mgrid" width="48" height="48" patternUnits="userSpaceOnUse">
+              <path d="M48 0H0v48" fill="none" stroke="#ff2e88" stroke-width=".5" opacity=".12"/>
+            </pattern>
+            <filter id="neon" x="-60%" y="-60%" width="220%" height="220%">
+              <feGaussianBlur stdDeviation="4" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+
+          <rect width="600" height="700" fill="#08080c"/>
+          <rect width="600" height="700" fill="url(#mgrid)"/>
+
+          <path d="M-20 390 C120 350 200 430 320 402 S520 310 640 340" fill="none" stroke="#141420" stroke-width="30"/>
+          <path d="M-20 390 C120 350 200 430 320 402 S520 310 640 340" fill="none" stroke="#29f0e0" stroke-width="1" stroke-dasharray="6 9" opacity=".45"/>
+          <path d="M250 -20 L300 700" stroke="#141420" stroke-width="20"/>
+          <path d="M250 -20 L300 700" stroke="#29f0e0" stroke-width=".7" stroke-dasharray="4 10" opacity=".25"/>
+
+          <text x="36" y="360" fill="#ff2e88" font-family="'Space Mono', monospace" font-size="12" letter-spacing="4" opacity=".8">N GREEN ST</text>
+          <text x="386" y="520" fill="#29f0e0" font-family="'Space Mono', monospace" font-size="10" letter-spacing="3" opacity=".6" transform="rotate(78 386 520)">SAND LN</text>
+
+          <g filter="url(#neon)">
+            <circle cx="300" cy="402" r="10" fill="none" stroke="#ff2e88" stroke-width="2.4"/>
+            <circle cx="300" cy="402" r="4" fill="#ff2e88"/>
+            <path d="M300 412v34" stroke="#ff2e88" stroke-width="1.2"/>
+          </g>
+          <circle cx="300" cy="402" r="42" fill="none" stroke="#ff2e88" stroke-width=".6" opacity=".35"/>
+          <circle cx="300" cy="402" r="68" fill="none" stroke="#ff2e88" stroke-width=".4" opacity=".18"/>
+
+          <text x="300" y="476" fill="#f4f1ea" font-family="'Anton', sans-serif" font-size="17" letter-spacing="3" text-anchor="middle">LADY LUCK</text>
+          <text x="300" y="496" fill="#ff2e88" font-family="'Space Mono', monospace" font-size="9" letter-spacing="3" text-anchor="middle">419 N GREEN ST</text>
+
+          <g font-family="'Space Mono', monospace" fill="#29f0e0" font-size="9" opacity=".5" letter-spacing="2">
+            <text x="118" y="214">N</text>
+          </g>
+          <g stroke="#29f0e0" fill="none" opacity=".25" stroke-width=".6">
+            <circle cx="118" cy="140" r="28"/><path d="M118 112v-8M118 168v8M90 140h-8M146 140h8"/>
+          </g>
+
+          <text x="40" y="660" fill="#3a3a48" font-family="'Space Mono', monospace" font-size="8" letter-spacing="3">36.0° N · 87.6° W</text>
+        </svg>
+        <div class="map__tag"><span>Today</span><b id="todayLabel">—</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CTA ══════════ -->
+<section class="cta" id="book">
+  <div class="wrap cta__inner">
+    <p class="eyebrow reveal">[ Get in the book ]</p>
+    <h2 class="cta__title reveal" data-delay="1">Luck favors<br><span class="neon">the booked.</span></h2>
+    <div class="cta__actions reveal" data-delay="2">
+      <a class="btn btn--pink" href="tel:+12702120037">Call the shop</a>
+      <a class="btn btn--line" href="https://www.facebook.com/ladylucktattoohendersonky/" target="_blank" rel="noopener">Message us</a>
+    </div>
+    <p class="cta__note reveal" data-delay="3">Walk-ins welcome, but a call never hurts. Deposits by phone or in person — never through a stranger's DM.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div class="footer__brand">
+      <p class="footer__word">Lady Luck</p>
+      <p class="footer__sub">Tattoo &amp; Piercing Co. II</p>
+      <p class="footer__addr">419 N Green St, Henderson, KY 42420<br>(270) 212-0037</p>
+    </div>
+    <nav class="footer__nav" aria-label="Footer">
+      <a href="#shop">Shop</a>
+      <a href="#crew">Crew</a>
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <div class="footer__social">
+      <a href="https://www.facebook.com/ladylucktattoohendersonky/" target="_blank" rel="noopener">Facebook ↗</a>
+      <a href="https://www.instagram.com/ladyluckhenderson/" target="_blank" rel="noopener">Instagram ↗</a>
+      <a href="mailto:ladyluckhenderson@gmail.com">Email ↗</a>
+    </div>
+  </div>
+  <div class="wrap footer__base">
+    <p>© <span id="year">2026</span> Lady Luck Tattoo &amp; Piercing Co. II</p>
+    <p>Owensboro · Henderson · Madisonville</p>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lightbox__close" id="lbClose" aria-label="Close">×</button>
+  <button class="lightbox__nav lightbox__nav--prev" id="lbPrev" aria-label="Previous">‹</button>
+  <figure class="lightbox__fig">
+    <img id="lbImg" alt="">
+    <figcaption id="lbCap"></figcaption>
+  </figure>
+  <button class="lightbox__nav lightbox__nav--next" id="lbNext" aria-label="Next">›</button>
+</div>
+
+<script type="module" src="js/scene.js"></script>
+<script src="js/site.js" defer></script>
+
+<style>
+  .hi-back{position:fixed;left:14px;bottom:14px;z-index:10000;display:inline-flex;align-items:center;gap:.4rem;
+    font-family:'Space Mono',ui-monospace,monospace;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;
+    text-decoration:none;color:#f4f1ea;background:rgba(5,5,7,.92);border:1px solid #343442;
+    padding:.45rem .65rem;backdrop-filter:blur(6px);transition:border-color .2s,color .2s}
+  .hi-back:hover{border-color:#ff2e88;color:#ff2e88}
+</style>
+<a class="hi-back" href="../../">&larr; Henderson Innovations</a>
+</body>
+</html>
