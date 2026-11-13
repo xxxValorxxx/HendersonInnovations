@@ -23,10 +23,20 @@
   <a class="net-mail" href="mailto:Admin@hendersoninnovations.com">Admin@hendersoninnovations.com</a>
 </header>
 
+<nav class="mobile-tabs" aria-label="Sections">
+  <button data-tab="hind" type="button">H.I.N.D Site</button>
+  <button data-tab="ground" type="button">H.I. Ground</button>
+  <button data-tab="studio" type="button">Studio</button>
+  <button data-tab="capabilities" type="button">Capabilities</button>
+  <button data-tab="preview" type="button">Preview</button>
+  <button data-tab="contact" type="button">Start</button>
+</nav>
+
 <nav class="node-labels" id="nodeLabels" aria-label="Sections">
   <button class="node-label" data-tab="studio" type="button"><span class="node-dot"></span><span class="node-text">Studio</span><span class="node-hi">H.I</span></button>
   <button class="node-label" data-tab="capabilities" type="button"><span class="node-dot"></span><span class="node-text">Capabilities</span><span class="node-hi">H.I</span></button>
   <button class="node-label" data-tab="hind" type="button"><span class="node-dot"></span><span class="node-text">H.I.N.D Site</span><span class="node-hi">H.I</span></button>
+  <button class="node-label" data-tab="ground" type="button"><span class="node-dot"></span><span class="node-text">H.I. Ground</span><span class="node-hi">H.I</span></button>
   <button class="node-label" data-tab="preview" type="button"><span class="node-dot"></span><span class="node-text">Client Preview</span><span class="node-hi">H.I</span></button>
   <button class="node-label" data-tab="contact" type="button"><span class="node-dot"></span><span class="node-text">Start a project</span><span class="node-hi">H.I</span></button>
 </nav>
@@ -70,6 +80,17 @@
       <a class="btn btn-solid" href="hind.html">Enter H.I.N.D Site</a>
       <a class="btn btn-line" href="./client-preview/">Client preview</a>
     </div>
+  </section>
+
+  <section class="panel-view" data-panel="ground" aria-labelledby="ground-title" hidden>
+    <div class="panel-label"><span>H.I</span> Internal</div>
+    <h2 id="ground-title">H.I. Ground</h2>
+    <p class="panel-sub">Client relations workspace — private to staff.</p>
+    <p>Every client, preview login, appointment, task, and research file in one ledger. Protected by staff credentials; never public.</p>
+    <div class="panel-actions">
+      <a class="btn btn-solid" href="http://localhost:9100/" target="_blank" rel="noopener">Sign in to H.I. Ground</a>
+    </div>
+    <p class="fine">Local-only. Available on this Mac at <code>localhost:9100</code>.</p>
   </section>
 
   <section class="panel-view" data-panel="preview" aria-labelledby="preview-title" hidden>

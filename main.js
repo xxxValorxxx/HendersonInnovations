@@ -20,10 +20,11 @@ const graph = new THREE.Group();
 scene.add(graph);
 
 const ink = 0x111110;
-const TAB_NAMES = ["studio", "capabilities", "hind", "preview", "contact"];
+const TAB_NAMES = ["hind", "ground", "studio", "capabilities", "preview", "contact"];
 
 // ---- nodes ---------------------------------------------------------------
 const tabDirs = {
+  ground: new THREE.Vector3(0.75, 0.55, 0.35),
   studio: new THREE.Vector3(0.25, 0.35, 1),
   capabilities: new THREE.Vector3(-1, 0.15, 0.55),
   hind: new THREE.Vector3(1, -0.15, 0.65),
@@ -99,15 +100,23 @@ for (let i = 0; i < tabEntries.length; i++) {
   link(decor.length + i, decor.length + ((i + 1) % tabEntries.length));
 }
 
-const edgePositions = new Float32Array(edges.length * 6);
-edges.forEach(([a, b], i) => {
-  edgePositions.set([all[a].x, all[a].y, all[a].z, all[b].x, all[b].y, all[b].z], i * 6);
-});
+const SAMPLES = 6;
+const curvePositions = [];
+for (const [a, b] of edges) {
+  const pa = all[a], pb = all[b];
+  const mid = pa.clone().add(pb).multiplyScalar(0.5);
+  mid.multiplyScalar(1.09 + Math.random() * 0.10);
+  const curve = new THREE.QuadraticBezierCurve3(pa, mid, pb);
+  const pts = curve.getPoints(SAMPLES);
+  for (let i = 0; i < pts.length - 1; i++) {
+    curvePositions.push(pts[i].x, pts[i].y, pts[i].z, pts[i + 1].x, pts[i + 1].y, pts[i + 1].z);
+  }
+}
 const edgeGeo = new THREE.BufferGeometry();
-edgeGeo.setAttribute("position", new THREE.BufferAttribute(edgePositions, 3));
+edgeGeo.setAttribute("position", new THREE.Float32BufferAttribute(curvePositions, 3));
 const edgeLines = new THREE.LineSegments(
   edgeGeo,
-  new THREE.LineBasicMaterial({ color: ink, transparent: true, opacity: 0.115 })
+  new THREE.LineBasicMaterial({ color: ink, transparent: true, opacity: 0.085 })
 );
 graph.add(edgeLines);
 
@@ -139,7 +148,7 @@ for (const name of TAB_NAMES) {
 }
 
 // ---- state ---------------------------------------------------------------
-let active = "studio";
+let active = "hind";
 let angle = 0;
 let targetRotX = 0;
 let targetRotY = 0;
@@ -158,7 +167,7 @@ setAnchor();
 function setActive(name, updateHash = true) {
   if (!tabs[name]) return;
   active = name;
-  labels.forEach((b) => {
+  document.querySelectorAll("[data-tab]").forEach((b) => {
     const on = b.dataset.tab === name;
     b.classList.toggle("is-active", on);
     b.setAttribute("aria-pressed", on ? "true" : "false");
@@ -197,7 +206,7 @@ document.querySelectorAll("[data-tab-link]").forEach((el) => {
 });
 
 const initial = location.hash.replace("#", "");
-setActive(tabs[initial] ? initial : "studio", false);
+setActive(tabs[initial] ? initial : "hind", false);
 
 // ---- pointer parallax ----------------------------------------------------
 window.addEventListener("pointermove", (e) => {
@@ -221,7 +230,7 @@ function frame() {
   const dt = Math.min(clock.getDelta(), 0.05);
   const time = clock.elapsedTime;
 
-  if (!reduced) angle += dt * 0.075;
+  if (!reduced) angle += dt * 0.045;
 
   graph.rotation.set(
     Math.sin(time * 0.09) * 0.10,
@@ -263,17 +272,19 @@ function frame() {
   const w = window.innerWidth, h = window.innerHeight;
   const panelRect = document.querySelector(".panel").getBoundingClientRect();
   const mobile = w < 900;
-  const maxX = mobile ? w - 70 : Math.max(140, panelRect.left - 26);
+  const rightEdge = mobile ? w - 10 : Math.max(160, panelRect.left - 10);
   const minY = 76;
   const maxY = mobile ? Math.max(minY + 60, panelRect.top - 24) : h - 64;
   for (const btn of labels) {
+    const halfW = (btn.offsetWidth || 150) / 2 + 6;
+    const halfH = (btn.offsetHeight || 30) / 2 + 4;
     const name = btn.dataset.tab;
     worldActive.copy(tabs[name]).applyMatrix4(graph.matrixWorld);
     projected.copy(worldActive).project(camera);
     let lx = (projected.x * 0.5 + 0.5) * w;
     let ly = (-projected.y * 0.5 + 0.5) * h;
-    lx = THREE.MathUtils.clamp(lx, 74, maxX);
-    ly = THREE.MathUtils.clamp(ly, minY, maxY);
+    lx = THREE.MathUtils.clamp(lx, halfW + 8, rightEdge - halfW);
+    ly = THREE.MathUtils.clamp(ly, minY + halfH, maxY - halfH * 0.2);
     btn.style.left = `${lx}px`;
     btn.style.top = `${ly}px`;
     const depth = worldActive.z;

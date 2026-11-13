@@ -276,3 +276,30 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:1px solid var(-
   .pulse{animation:none}
   .panel-enter{animation:none}
 }
+
+/* mobile section rail — the network labels are replaced by a usable chip rail */
+.mobile-tabs{display:none}
+.node-label{transition:left .12s linear, top .12s linear, background .2s, color .2s, border-color .2s, opacity .2s}
+@media (max-width:900px){
+  .node-labels{display:none}
+  .mobile-tabs{
+    display:flex;position:fixed;left:0;right:0;top:64px;z-index:14;gap:7px;
+    padding:9px 16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+    background:rgba(242,241,238,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+  }
+  .mobile-tabs::-webkit-scrollbar{display:none}
+  .mobile-tabs button{
+    flex:0 0 auto;white-space:nowrap;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;
+    padding:9px 11px;border:1px solid var(--line);color:var(--ink-soft);background:transparent;
+  }
+  .mobile-tabs button.is-active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .panel{
+    bottom:40px;max-height:calc(100vh - 210px);padding:24px 20px 26px;
+    border-left:0;border-right:0;border-bottom:0;
+  }
+  .panel h1{font-size:1.65rem}
+  .panel h2{font-size:1.5rem}
+  .panel p{font-size:.9rem}
+  .chat-widget{height:300px}
+  .node-labels{pointer-events:none}
+}
