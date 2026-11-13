@@ -13,7 +13,7 @@ const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerH
 camera.position.set(0, 0, 6.2);
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, window.innerWidth < 900 ? 1.25 : 2));
 renderer.setSize(window.innerWidth, window.innerHeight);
 
 const graph = new THREE.Group();
@@ -159,7 +159,7 @@ const worldActive = new THREE.Vector3();
 const tmp = new THREE.Vector3();
 
 function setAnchor() {
-  if (window.innerWidth < 900) anchor.set(0, 1.15, 0);
+  if (window.innerWidth < 900) anchor.set(0, 0.15, 0);
   else anchor.set(-1.25, 0.05, 0);
 }
 setAnchor();
@@ -186,7 +186,17 @@ function setActive(name, updateHash = true) {
     halos[key].material.opacity = key === name ? 0.55 : 0.18;
     halos[key].scale.setScalar(key === name ? 1.5 : 1);
   }
-  if (updateHash) history.replaceState(null, "", `#${name}`);
+  if (updateHash) {
+    history.replaceState(null, "", `#${name}`);
+    if (window.innerWidth < 900) {
+      requestAnimationFrame(() => {
+        const panelEl = document.querySelector(".panel");
+        if (panelEl && panelEl.getBoundingClientRect().top > window.innerHeight * 0.5) {
+          panelEl.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+        }
+      });
+    }
+  }
 }
 
 document.querySelectorAll("[data-tab]").forEach((btn) => {
@@ -210,6 +220,7 @@ setActive(tabs[initial] ? initial : "hind", false);
 
 // ---- pointer parallax ----------------------------------------------------
 window.addEventListener("pointermove", (e) => {
+  if (window.innerWidth < 900 || e.pointerType === "touch") return;
   pointer.x = (e.clientX / window.innerWidth) * 2 - 1;
   pointer.y = (e.clientY / window.innerHeight) * 2 - 1;
 });
