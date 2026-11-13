@@ -139,6 +139,14 @@ export default {
       return new Response(asset.body, { status: asset.status, headers });
     }
 
+    if (path === "/client-preview/" || path === "/client-preview") {
+      const index = new URL("/client-preview/index.html", url);
+      const asset = await env.ASSETS.fetch(new Request(index.toString(), request));
+      const headers = new Headers(asset.headers);
+      headers.set("x-robots-tag", "noindex, nofollow");
+      return new Response(asset.body, { status: asset.status, headers });
+    }
+
     if (path.startsWith("/client-preview/")) {
       const asset = await env.ASSETS.fetch(request);
       const headers = new Headers(asset.headers);
