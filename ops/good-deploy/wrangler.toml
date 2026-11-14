@@ -1,0 +1,7 @@
+name = "henderson-innovations-site"
+pages_build_output_dir = "."
+compatibility_date = "2026-01-15"
+
+[[kv_namespaces]]
+binding = "HI_KV"
+id = "d422c3da0eae42eab41ac3f8350fb06f"

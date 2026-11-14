@@ -1,0 +1,5 @@
+client-preview/sites/
+store/
+node_modules/
+.wrangler/
+.DS_Store

@@ -1,0 +1,12 @@
+.git
+.gitignore
+worker.js
+wrangler.jsonc
+wrangler.toml
+store
+scripts
+data
+node_modules
+.assetsignore
+client-preview/lady-luck
+.DS_Store
