@@ -154,10 +154,6 @@ export default {
       return new Response(asset.body, { status: asset.status, headers });
     }
 
-    // marketing site is public (html_handling=none, so map the root ourselves)
-    if (path === "/" || path === "") {
-      return env.ASSETS.fetch(new Request(new URL("/index.html", url.origin).toString(), request));
-    }
     return env.ASSETS.fetch(request);
   }
 };
