@@ -8,9 +8,9 @@ c() { # url, expect
   if [ "$code" != "$2" ]; then echo "FAIL $1 -> $code (want $2)"; fail=1; fi
 }
 c "$DOM/" 200
-c "$DOM/index.html" 200
+code=$(curl -sL -o /dev/null -m 25 -w "%{http_code}" "$DOM/index.html"); [ "$code" = "200" ] || { echo "FAIL /index.html -> $code"; fail=1; }
 c "$DOM/hind.html" 200
-c "$DOM/client-preview/" 200
+code=$(curl -sL -o /dev/null -m 25 -w "%{http_code}" "$DOM/client-preview/"); [ "$code" = "200" ] || { echo "FAIL client-preview -> $code"; fail=1; }
 curl -s -m 25 "$DOM/" | grep -qi "henderson innovations" || { echo "FAIL / content"; fail=1; }
 curl -s -m 25 "$DOM/hind.html" | grep -q "clients on file" || { echo "FAIL hind content"; fail=1; }
 rm -f /tmp/hi_check.jar
