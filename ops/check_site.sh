@@ -1,7 +1,7 @@
 #!/bin/bash
 # H.I production check battery — exit 0 only when EVERYTHING works.
-DOM="https://hendersoninnovations.com"
-CRM="https://aegons-mac-mini-1.tail44007b.ts.net"
+DOM="${1:-https://hendersoninnovations.com}"
+CRM="${2:-https://aegons-mac-mini-1.tail44007b.ts.net}"
 fail=0
 c() { # url, expect
   local code; code=$(curl -s -o /dev/null -m 25 -w '%{http_code}' "$1")

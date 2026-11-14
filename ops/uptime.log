@@ -59,3 +59,12 @@ ALL GREEN 11-14 08:05:07
 ALL GREEN 11-14 08:07:10
 ALL GREEN 11-14 08:09:13
 ALL GREEN 11-14 08:11:16
+FAIL https://hendersoninnovations.com/ -> 404 (want 200)
+FAIL / content
+FAIL preview site -> 404
+FAIL preview site content
+[11-14 08:13:18] OUTAGE DETECTED — auto-repair starting
+[11-14 08:13:18] redeploying pages from frozen good-deploy…
+[11-14 08:13:25] redeploying edge proxy…
+ALL GREEN 11-14 08:13:36
+[11-14 08:13:36] REPAIR SUCCESS
